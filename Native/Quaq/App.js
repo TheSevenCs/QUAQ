@@ -5,6 +5,9 @@ import {
   View,
   SafeAreaView,
   TouchableHighlight,
+  Alert,
+  BackHandler,
+  Platform,
 } from "react-native";
 
 export default function App() {
@@ -17,7 +20,16 @@ export default function App() {
         <TouchableHighlight
           style={styles.button}
           underlayColor="white"
-          onPress={() => {}}
+          onPress={() =>
+            Alert.alert("geek", "are you a duck", [
+              { text: "yes" },
+              {
+                text: "no",
+                onPress: () =>
+                  Platform.OS === "android" ? BackHandler.exitApp() : 0,
+              },
+            ])
+          }
         >
           <Text style={styles.buttonText}>Howdy</Text>
         </TouchableHighlight>
