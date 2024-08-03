@@ -1,7 +1,7 @@
-const express = require("express");
-const path = require("path");
+const express = require("express"); // Imports the Express framework.
+const path = require("path"); // Imports the File System module.
 const fs = require("fs");
-const { fileURLToPath } = require("url");
+const { fileURLToPath } = require("url"); // Not used since ths href section is also unused?
 
 const cors = require("cors");
 
@@ -15,27 +15,15 @@ app.use(
 const directory = path.join(__dirname, "..");
 app.use(express.static(path.join(__dirname, "..")));
 
-// Account router
-// const loginRouter = require("../routes/login.js");
-// app.use("/account", loginRouter);
+app.use(express.json()); // Add this line to handle JSON data
 
-// HREF BETWEEN PAGES
-app.get("/:page", (req, res) => {
-  const page = req.params.page;
-  const filePath = path.join(directory, `${page}.html`);
-  console.log(directory + `${page}.html`);
+// CLIENTS ROUTER
+const clientsRouter = require("./routes/clients.js");
+app.use("/clients", clientsRouter);
 
-  if (fs.existsSync(filePath)) {
-    res.sendFile(filePath);
-  } else {
-    // If the file does not exist, send a 404 error
-    res.status(404).send("Page not found");
-  }
-});
-
-// Start the server
+// STARTING THE SERVER
 const PORT = 5500;
-const HOST = "127.0.0.1";
+const HOST = "192.168.248.146";
 app.listen(PORT, HOST, () => {
   console.log(`Server is running on port ${PORT}`);
 });

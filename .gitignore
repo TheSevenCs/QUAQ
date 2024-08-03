@@ -1,5 +1,6 @@
 # FROM PROJECT
 .env
+yes.http
 
 # Logs
 logs
