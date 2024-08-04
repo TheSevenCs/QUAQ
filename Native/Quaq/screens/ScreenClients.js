@@ -8,14 +8,22 @@ const ScreenClients = () => {
   const navigation = useNavigation();
 
   const handlePress = async () => {
-    console.log("METHOD CALLED");
-
     try {
       const response = await axios.post(
-        "http://192.168.248.146:5500/clients",
+        // UDPATE THIS LINK
+        "http://192.168.0.124:5500/clients",
         {},
         {
-          params: { newName: "tester1", newDate: "tester1" },
+          params: {
+            clientFirstName: "John",
+            clientLastName: "Doe",
+            clientEmail: "johndoe@example.com",
+            clientPhone: "123-456-7890",
+            clientDate: "2024-08-03", // Format is currently unspecified
+            clientStatus: "true", // Boolean value for status
+            clientWebsite: "http://www.example.com",
+            clientAddress: "123 Street Street",
+          },
         }
       );
       console.log("FROM ScreenClients.js, RESPONSE: ", response.data);

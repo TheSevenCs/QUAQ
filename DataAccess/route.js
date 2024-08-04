@@ -23,7 +23,7 @@ app.use("/clients", clientsRouter);
 
 // STARTING THE SERVER
 const PORT = 5500;
-const HOST = "192.168.248.146";
+const HOST = "192.168.0.124"; // UPDATE THIS IP WITH ifconfig --> en0 --> inet 192.168.0.124
 app.listen(PORT, HOST, () => {
   console.log(`Server is running on port ${PORT}`);
 });

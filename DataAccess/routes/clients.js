@@ -9,27 +9,26 @@ const router = express.Router();
 
 // CLIENTS PAGE
 router.post("/", async (req, res) => {
-  console.log("Request received:", req.body); // Log incoming request
   const {
-    newName,
-    newDate,
+    newFirstName,
+    newLastName,
     newEmail,
-    newPhoneNumber,
+    newPhone,
+    newDate,
+    newStatus,
     newWebsite,
     newAddress,
-    newType,
-    newStatus,
   } = req.query;
 
   const newClient = {
-    clientName: newName,
-    clientDate: newDate,
+    clientFirstName: newFirstName,
+    clientLastName: newLastName,
     clientEmail: newEmail,
-    clientPhoneNumber: newPhoneNumber,
+    clientPhone: newPhone,
+    clientDate: newDate,
+    clientStatus: newStatus,
     clientWebsite: newWebsite,
     clientAddress: newAddress,
-    clientType: newType,
-    clientStatus: newStatus,
     client_id: (
       await generalModule.TEMPgenerateID(9000000000000, 9999999999999)
     ).toString(),
