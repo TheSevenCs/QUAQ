@@ -49,8 +49,8 @@ router.post("/", async (req, res) => {
 // READ
 router.get("/", async (req, res) => {
   try {
-    const clients = await generalModule.getClients();
-    console.log("FROM clients.js, RESULTS FROM Clients TABLE: ", dbResults);
+    const clients = await generalModule.getFromDatabase("Clients");
+    console.log("FROM clients.js, RESULTS FROM Clients TABLE: ", clients);
 
     const formattedClients = clients.map((client) => {
       return {
@@ -139,7 +139,10 @@ router.delete("/", async (req, res) => {
   const { client_id } = req.query;
 
   try {
-    const response = await generalModule.deleteFromDatabase(client_id);
+    const response = await generalModule.deleteFromDatabase(
+      "Clients",
+      client_id
+    );
     console.log(`FROM clients.js, Client: ${clientID} DELETED: `, response);
   } catch (error) {
     console.error("FROM clients.js, Client COULD NOT BE DELETED: ", error);

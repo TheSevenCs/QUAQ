@@ -22,12 +22,17 @@ const clientsRouter = require("./routes/clients.js");
 app.use("/clients", clientsRouter);
 
 // EQUIPMENT GROUPS ROUTER
+const equipmentGroupsRouter = require("./routes/equipment.js");
+app.use("/equipment", equipmentGroupsRouter);
 
 // EQUIPMENT ROUTER
+const equipmentRouter = require("./routes/equipment.js");
+app.use("/equipment", equipmentRouter);
 
 // STARTING THE SERVER
 const PORT = 5500;
-const HOST = "192.168.0.124"; // UPDATE THIS IP WITH ifconfig --> en0 --> inet 192.168.0.124
+//const HOST = "192.168.0.124"; // UPDATE THIS IP WITH ifconfig --> en0 --> inet 192.168.0.124
+const HOST = "127.0.0.1";
 app.listen(PORT, HOST, () => {
   console.log(`Server is running on port ${PORT}`);
 });

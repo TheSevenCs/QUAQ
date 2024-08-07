@@ -38,6 +38,8 @@ const ScreenClients = () => {
   };
   const getClients = async () => {
     try {
+      const response = await axios.get("/clients");
+      return response;
     } catch (error) {
       console.log("FROM ScreenClients.js, ERROR GETTING Clients: ", error);
     }
