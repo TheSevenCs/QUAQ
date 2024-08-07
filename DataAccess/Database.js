@@ -20,8 +20,9 @@ const dynamoClient = new DynamoDBClient({
 });
 const client = DynamoDBDocumentClient.from(dynamoClient);
 
+// CREATE
 const addToDatabase = async (table, data) => {
-  console.log("GENERAL MODULE ENTERED. TableName: ", table);
+  console.log("database.js -> addToDatabase() -> TableName: ", table);
 
   try {
     const params = {
@@ -36,7 +37,7 @@ const addToDatabase = async (table, data) => {
     throw error;
   }
 };
-
+// READ
 const getFromDatabase = async (table, attribute = null, value = null) => {
   try {
     const params = {
@@ -45,6 +46,7 @@ const getFromDatabase = async (table, attribute = null, value = null) => {
 
     if (attribute && value) {
       params.FilterExpression = `${attribute} = :value`;
+      // params.FilterExpression = attribute + " = :value";
       params.ExpressionAttributeValues = {
         ":value": value,
       };
@@ -57,23 +59,7 @@ const getFromDatabase = async (table, attribute = null, value = null) => {
     throw error;
   }
 };
-
-const deleteFromDatabase = async (table, key) => {
-  try {
-    const params = {
-      TableName: table,
-      Key: key,
-    };
-
-    const result = await dynamoClient.send(new DeleteCommand(params));
-    console.log("Database.js, ITEM DELETED.");
-    return result;
-  } catch (error) {
-    console.error("Database.js, ERROR DELETING ITEM: ", error);
-    throw error;
-  }
-};
-
+// UPDATE
 const updateItemInDatabase = async (
   tableName,
   key,
@@ -95,8 +81,24 @@ const updateItemInDatabase = async (
     throw error;
   }
 };
+// DELETE
+const deleteFromDatabase = async (table, key) => {
+  try {
+    const params = {
+      TableName: table,
+      Key: key,
+    };
 
-// REMAKE THIS FUNCTION
+    const result = await dynamoClient.send(new DeleteCommand(params));
+    console.log("Database.js, ITEM DELETED.");
+    return result;
+  } catch (error) {
+    console.error("Database.js, ERROR DELETING ITEM: ", error);
+    throw error;
+  }
+};
+
+// NEED TO REMAKE THIS FUNCTION
 const TEMPgenerateID = async (minID, maxID) => {
   min = Math.ceil(minID); // Round up to the nearest integer
   max = Math.floor(maxID); // Round down to the nearest integer

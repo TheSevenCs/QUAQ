@@ -7,7 +7,8 @@ import axios from "axios";
 const ScreenClients = () => {
   const navigation = useNavigation();
 
-  const handlePress = async () => {
+  // DATABASE FUNCTIONS
+  const createClient = async () => {
     try {
       const response = await axios.post(
         // UDPATE THIS LINK
@@ -15,14 +16,15 @@ const ScreenClients = () => {
         {},
         {
           params: {
-            clientFirstName: "John",
-            clientLastName: "Doe",
-            clientEmail: "johndoe@example.com",
-            clientPhone: "123-456-7890",
-            clientDate: "2024-08-03", // Format is currently unspecified
-            clientStatus: "true", // Boolean value for status
-            clientWebsite: "http://www.example.com",
-            clientAddress: "123 Street Street",
+            company_id: "001",
+            newFirstName: "John",
+            newLastName: "Doe",
+            newEmail: "johndoe@example.com",
+            newPhone: "123-456-7890",
+            newDate: "2024-08-03", // <YYYY-MM-DD>
+            newClientActive: true,
+            newWebsite: "http://www.example.com",
+            newAddress: "123 Street Street",
           },
         }
       );
@@ -32,6 +34,24 @@ const ScreenClients = () => {
         "FROM ScreenClients.js, ERROR CREATING RANDOM Client: ",
         error
       );
+    }
+  };
+  const getClients = async () => {
+    try {
+    } catch (error) {
+      console.log("FROM ScreenClients.js, ERROR GETTING Clients: ", error);
+    }
+  };
+  const updateClient = async () => {
+    try {
+    } catch (error) {
+      console.log("FROM ScreenClients.js, ERROR UPDATING Client: ", error);
+    }
+  };
+  const deleteClient = async () => {
+    try {
+    } catch (error) {
+      console.log("FROM ScreenClients.js, ERROR DELETING Client: ", error);
     }
   };
 

@@ -21,6 +21,10 @@ app.use(express.json()); // Add this line to handle JSON data
 const clientsRouter = require("./routes/clients.js");
 app.use("/clients", clientsRouter);
 
+// EQUIPMENT GROUPS ROUTER
+
+// EQUIPMENT ROUTER
+
 // STARTING THE SERVER
 const PORT = 5500;
 const HOST = "192.168.0.124"; // UPDATE THIS IP WITH ifconfig --> en0 --> inet 192.168.0.124
