@@ -1,5 +1,5 @@
 const express = require("express");
-const generalModule = require("../database.js");
+const generalModule = require("../Database.js");
 const router = express.Router();
 
 // NOTE: The purpose of these routes/x files is to
@@ -41,16 +41,24 @@ router.post("/", async (req, res) => {
   // SEND TO GENERAL MODULE
   try {
     const result = await generalModule.addToDatabase("Clients", newClient);
-    console.log("FROM clients.js, NEW Client ADDED: ", result);
+
+    res.status(200).json({
+      message: "FROM clients.js, NEW Client ADDED:",
+      data: newClient,
+      result: result,
+    });
   } catch (error) {
-    console.error("FROM clients.js, ERROR CREATING NEW Client: ", error);
+    res.status(500).json({
+      message: "FROM clients.js, ERROR UPDATING Client:",
+      error: error.message,
+    });
   }
 });
 // READ
 router.get("/", async (req, res) => {
   try {
     const clients = await generalModule.getFromDatabase("Clients");
-    console.log("FROM clients.js, RESULTS FROM Clients TABLE: ", clients);
+    // console.log("FROM clients.js, RESULTS FROM Clients TABLE: ", clients); // TESTING
 
     const formattedClients = clients.map((client) => {
       return {
@@ -69,8 +77,10 @@ router.get("/", async (req, res) => {
 
     res.json(formattedClients);
   } catch (error) {
-    console.error("FROM clients.js, ERROR GETTING Clients: ", error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({
+      message: "FROM clients.js, ERROR UPDATING Client:",
+      error: error.message,
+    });
   }
 });
 // UPDATE
@@ -119,6 +129,7 @@ router.patch("/", async (req, res) => {
   // DEFINE PRIMARY KEY
   const primaryKey = {
     client_id: { S: client_id },
+    company_id: { S: company_id },
   };
 
   try {
@@ -129,23 +140,42 @@ router.patch("/", async (req, res) => {
       expressionAttributeValues
     );
 
-    console.log("FROM clients.js, Client EDITED: ", response);
+    res.status(200).json({
+      message: "FROM clients.js, SUCCESSFULLY UPDATED Client:",
+      // data: clientDetails,
+      result: response,
+    });
   } catch (error) {
-    console.error("FROM clients.js, ERROR EDITING Client: ", error);
+    res.status(500).json({
+      message: "FROM clients.js, ERROR UPDATING Client:",
+      error: error.message,
+    });
   }
 });
 // DELETE
 router.delete("/", async (req, res) => {
-  const { client_id } = req.query;
+  // GET PARAMS
+  const { client_id, company_id } = req.query;
+
+  // DEFINE PRIMARY AND SORT KEYS
+  const key = {
+    client_id: client_id,
+    company_id: company_id,
+  };
 
   try {
-    const response = await generalModule.deleteFromDatabase(
-      "Clients",
-      client_id
-    );
-    console.log(`FROM clients.js, Client: ${clientID} DELETED: `, response);
+    console.log("Key being sent to DynamoDB:", key);
+    const response = await generalModule.deleteFromDatabase("Clients", key);
+
+    res.status(200).json({
+      message: "FROM clients.js, SUCCESSFULLY DELETED Client:",
+      result: response,
+    });
   } catch (error) {
-    console.error("FROM clients.js, Client COULD NOT BE DELETED: ", error);
+    res.status(500).json({
+      message: "FROM clients.js, ERROR DELETING Client:",
+      error: error.message,
+    });
   }
 });
 

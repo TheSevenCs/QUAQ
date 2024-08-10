@@ -22,7 +22,7 @@ const client = DynamoDBDocumentClient.from(dynamoClient);
 
 // CREATE
 const addToDatabase = async (table, data) => {
-  console.log("database.js -> addToDatabase() -> TableName: ", table);
+  // console.log("database.js -> addToDatabase() -> TableName: ", table);
 
   try {
     const params = {
@@ -53,7 +53,7 @@ const getFromDatabase = async (table, attribute = null, value = null) => {
     }
 
     const result = await dynamoClient.send(new ScanCommand(params));
-    return result;
+    return result.Items;
   } catch (error) {
     console.error("Database.js, ERROR GETTING DATA:", error);
     throw error;
@@ -67,15 +67,18 @@ const updateItemInDatabase = async (
   expressionAttributeValues
 ) => {
   try {
+    // GET PARAMS
     const params = {
       TableName: tableName,
       Key: key,
       UpdateExpression: updateExpression,
       ExpressionAttributeValues: expressionAttributeValues,
     };
-    console.log(params);
+
+    // console.log(params); // TESTING
     const result = await client.send(new UpdateItemCommand(params));
     console.log("Database.js, SUCCESSFULLY UPDATED: ", result);
+    return result;
   } catch (error) {
     console.error("Database.js, ERROR UPDATING ITEM: ", error);
     throw error;
@@ -84,14 +87,15 @@ const updateItemInDatabase = async (
 // DELETE
 const deleteFromDatabase = async (table, key) => {
   try {
+    // GET PARAMS (client_id)
     const params = {
       TableName: table,
       Key: key,
     };
 
-    const result = await dynamoClient.send(new DeleteCommand(params));
-    console.log("Database.js, ITEM DELETED.");
-    return result;
+    const response = await dynamoClient.send(new DeleteCommand(params));
+    console.log("Database.js, ITEM DELETED:", response);
+    return response;
   } catch (error) {
     console.error("Database.js, ERROR DELETING ITEM: ", error);
     throw error;

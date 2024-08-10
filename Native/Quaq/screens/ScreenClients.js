@@ -12,7 +12,7 @@ const ScreenClients = () => {
     try {
       const response = await axios.post(
         // UDPATE THIS LINK
-        "http://192.168.0.124:5500/clients",
+        "http://192.168.0.50:5500/clients",
         {},
         {
           params: {
@@ -30,10 +30,7 @@ const ScreenClients = () => {
       );
       console.log("FROM ScreenClients.js, RESPONSE: ", response.data);
     } catch (error) {
-      console.error(
-        "FROM ScreenClients.js, ERROR CREATING RANDOM Client: ",
-        error
-      );
+      console.log("FROM ScreenClients.js, ERROR ADDING RANDOM Client: ", error);
     }
   };
   const getClients = async () => {
@@ -68,7 +65,7 @@ const ScreenClients = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={async () => handlePress()}
+        onPress={async () => createClient()}
       >
         <Text style={styles.buttonText}>POST TO DATABASE</Text>
       </TouchableOpacity>
