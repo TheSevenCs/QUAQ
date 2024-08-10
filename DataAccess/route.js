@@ -22,8 +22,8 @@ const clientsRouter = require("./routes/clients.js");
 app.use("/clients", clientsRouter);
 
 // EQUIPMENT GROUPS ROUTER
-const equipmentGroupsRouter = require("./routes/equipment.js");
-app.use("/equipment", equipmentGroupsRouter);
+const equipmentGroupsRouter = require("./routes/equipmentGroups.js");
+app.use("/equipmentGroups", equipmentGroupsRouter);
 
 // EQUIPMENT ROUTER
 const equipmentRouter = require("./routes/equipment.js");
