@@ -31,7 +31,7 @@ app.use("/equipment", equipmentRouter);
 
 // STARTING THE SERVER
 const PORT = 5500;
-const HOST = "192.168.0.50"; // UPDATE THIS IP WITH ifconfig --> en0 --> inet 192.168.0.124
+const HOST = "localhost"; // UPDATE THIS IP WITH ifconfig --> en0 --> inet 192.168.0.124
 // const HOST = "127.0.0.1";
 app.listen(PORT, HOST, () => {
   console.log(`Server is running on port ${PORT}`);

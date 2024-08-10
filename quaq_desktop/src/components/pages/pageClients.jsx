@@ -4,6 +4,9 @@ import axios from "axios";
 // const generalModule = require("/DataAccess/database.js");
 
 const Clients = () => {
+  const network_ip = "http://localhost";
+  const router_port = ":5500";
+
   const [clients, setClients] = useState([]);
   const [newClient, setNewClient] = useState({
     company_id: "",
@@ -12,7 +15,7 @@ const Clients = () => {
     clientEmail: "",
     clientPhone: "",
     clientDate: "",
-    clientActive: true,
+    clientActive: "true",
     clientWebsite: "",
     clientAddress: "",
   });
@@ -24,7 +27,7 @@ const Clients = () => {
     clientEmail: "",
     clientPhone: "",
     clientDate: "",
-    clientActive: true,
+    clientActive: "",
     clientWebsite: "",
     clientAddress: "",
   });
@@ -42,7 +45,7 @@ const Clients = () => {
     console.log("ENTERING addClient().");
     try {
       const response = await axios.post(
-        "http://192.168.0.50:5500/clients",
+        network_ip + router_port + "/clients",
         {},
         {
           params: {
@@ -69,7 +72,7 @@ const Clients = () => {
         clientEmail: "",
         clientPhone: "",
         clientDate: "",
-        clientActive: true,
+        clientActive: "true",
         clientWebsite: "",
         clientAddress: "",
       });
@@ -80,9 +83,9 @@ const Clients = () => {
   };
   // READ
   const getClients = async () => {
-    console.log("FROM getClients.");
+    console.log("FROM getClients."); // TESTING
     try {
-      const response = await axios.get("http://192.168.0.50:5500/clients");
+      const response = await axios.get(network_ip + router_port + "/clients");
       setClients(response.data);
       // console.log("response.data: ", response.data); // TESTING
       // console.log("response: ", response); // TESTING
@@ -92,21 +95,27 @@ const Clients = () => {
   };
   // UPDATE
   const updateClient = async () => {
+    console.log("FROM pageClients.jsx, editClient STATE:", editClient);
     try {
-      const response = await axios.patch("http://192.168.0.50:5500/clients", {
-        params: {
-          client_id: editClient.client_id,
-          company_id: editClient.company_id,
-          clientFirstName: editClient.clientFirstName,
-          clientLastName: editClient.clientLastName,
-          clientEmail: editClient.clientEmail,
-          clientPhone: editClient.clientPhone,
-          clientDate: editClient.clientDate,
-          clientActive: editClient.clientActive,
-          clientWebsite: editClient.clientWebsite,
-          clientAddress: editClient.clientAddress,
-        },
-      });
+      const response = await axios.patch(
+        network_ip + router_port + "/clients",
+        {},
+        {
+          params: {
+            // SEND THESE FROM THE req.params AS CONFIGURED IN route.js
+            client_id: editClient.client_id,
+            company_id: editClient.company_id,
+            editedFirstName: editClient.clientFirstName,
+            editedLastName: editClient.clientLastName,
+            editedEmail: editClient.clientEmail,
+            editedPhone: editClient.clientPhone,
+            editedDate: editClient.clientDate,
+            editedActive: editClient.clientActive,
+            editedWebsite: editClient.clientWebsite,
+            editedAddress: editClient.clientAddress,
+          },
+        }
+      );
 
       // LOADS NEW DATA THEN RESETS FIELDS
       getClients();
@@ -118,7 +127,7 @@ const Clients = () => {
         clientEmail: "",
         clientPhone: "",
         clientDate: "",
-        clientActive: true, // Setting this to null causes error with toString()
+        clientActive: "", // Setting this to null causes error with toString()
         clientWebsite: "",
         clientAddress: "",
       });
@@ -131,12 +140,15 @@ const Clients = () => {
   // DELETE
   const deleteClient = async () => {
     try {
-      const response = await axios.delete("http://192.168.0.50:5500/clients", {
-        params: {
-          client_id: deleteClient_id.client_id,
-          company_id: deleteClient_id.company_id,
-        },
-      });
+      const response = await axios.delete(
+        network_ip + router_port + "/clients",
+        {
+          params: {
+            client_id: deleteClient_id.client_id,
+            company_id: deleteClient_id.company_id,
+          },
+        }
+      );
 
       // LOADS NEW DATA THEN RESETS FIELDS
       getClients();
@@ -148,7 +160,7 @@ const Clients = () => {
         clientEmail: "",
         clientPhone: "",
         clientDate: "",
-        clientActive: null,
+        clientActive: "",
         clientWebsite: "",
         clientAddress: "",
       });
@@ -159,7 +171,9 @@ const Clients = () => {
   };
 
   return (
+    // COMPONENT DIV
     <div>
+      {/* TITLE */}
       <h1>CLIENTS PAGE</h1>
 
       {/* ADD CLIENT */}
@@ -304,8 +318,8 @@ const Clients = () => {
             setEditClient({ ...editClient, clientActive: e.target.value })
           }
         >
-          <option value={true}>Active/True</option>
-          <option value={false}>Inactive/False</option>
+          <option value={"true"}>Active/True</option>
+          <option value={"false"}>Inactive/False</option>
         </select>
         <input
           type="text"

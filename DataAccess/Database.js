@@ -33,7 +33,7 @@ const addToDatabase = async (table, data) => {
     const result = await dynamoClient.send(new PutCommand(params));
     return result;
   } catch (error) {
-    console.error("Database.js, ERROR ADDING DATA:", error);
+    console.error("FROM Database.js, ERROR ADDING DATA:", error);
     throw error;
   }
 };
@@ -55,7 +55,7 @@ const getFromDatabase = async (table, attribute = null, value = null) => {
     const result = await dynamoClient.send(new ScanCommand(params));
     return result.Items;
   } catch (error) {
-    console.error("Database.js, ERROR GETTING DATA:", error);
+    console.error("FROM Database.js, ERROR GETTING DATA:", error);
     throw error;
   }
 };
@@ -75,12 +75,12 @@ const updateItemInDatabase = async (
       ExpressionAttributeValues: expressionAttributeValues,
     };
 
-    // console.log(params); // TESTING
+    // console.log("FROM Database.js, PARAMS FOR PATCH:", params); // TESTING
     const result = await client.send(new UpdateItemCommand(params));
-    console.log("Database.js, SUCCESSFULLY UPDATED: ", result);
+    console.log("FROM Database.js, SUCCESSFULLY UPDATED: ", result);
     return result;
   } catch (error) {
-    console.error("Database.js, ERROR UPDATING ITEM: ", error);
+    console.error("FROM Database.js, ERROR UPDATING ITEM: ", error);
     throw error;
   }
 };
@@ -94,10 +94,10 @@ const deleteFromDatabase = async (table, key) => {
     };
 
     const response = await dynamoClient.send(new DeleteCommand(params));
-    console.log("Database.js, ITEM DELETED:", response);
+    console.log("FROM Database.js, ITEM DELETED:", response);
     return response;
   } catch (error) {
-    console.error("Database.js, ERROR DELETING ITEM: ", error);
+    console.error("FROM Database.js, ERROR DELETING ITEM: ", error);
     throw error;
   }
 };

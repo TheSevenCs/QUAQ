@@ -94,21 +94,22 @@ router.patch("/", async (req, res) => {
     editedEmail,
     editedPhone,
     editedDate,
-    editedClientActive,
+    editedActive,
     editedWebsite,
     editedAddress,
   } = req.query;
 
   // CREATE NEW ENTRY
   const clientDetails = {
-    client_id: client_id,
-    company_id: company_id,
+    // THESE KEYS ARE USED AS IDENTIFIERS, AND ARE NOT UPDATED
+    // client_id: client_id,
+    // company_id: company_id,
     clientFirstName: editedFirstName,
     clientLastName: editedLastName,
     clientEmail: editedEmail,
     clientPhone: editedPhone,
     clientDate: editedDate,
-    clientActive: editedClientActive,
+    clientActive: editedActive,
     clientWebsite: editedWebsite,
     clientAddress: editedAddress,
   };
@@ -133,6 +134,10 @@ router.patch("/", async (req, res) => {
   };
 
   try {
+    // console.log(
+    //   "FROM clients.js, expressionAttributeValues:",
+    //   expressionAttributeValues
+    // ); // TESTER
     const response = await generalModule.updateItemInDatabase(
       "Clients",
       primaryKey,
