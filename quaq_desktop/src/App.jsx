@@ -1,12 +1,29 @@
-// React/App.jsx
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import React from "react";
-import Clients from "./components/pages/pageClients.jsx";
+
+// PAGE COMPONENTS
+import {
+  PageHome,
+  PageClients,
+  PageEquipmentGroups,
+  PageEquipment,
+} from "./components/pages";
 
 const App = () => {
   return (
-    <div>
-      <Clients />
-    </div>
+    <BrowserRouter>
+      <div id="mainDiv">
+        <Routes>
+          <Route path="/" element={<PageHome />} />
+          <Route path="/pageClients" element={<PageClients />} />
+          <Route
+            path="/pageEquipmentGroups"
+            element={<PageEquipmentGroups />}
+          />
+          <Route path="/pageEquipment" element={<PageEquipment />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
 

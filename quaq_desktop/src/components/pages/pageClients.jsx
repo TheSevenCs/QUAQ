@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 // const generalModule = require("/DataAccess/database.js");
 
-const Clients = () => {
+const PageClients = () => {
   const network_ip = "http://localhost";
   const router_port = ":5500";
 
@@ -384,4 +384,4 @@ const Clients = () => {
   );
 };
 
-export default Clients;
+export default PageClients;

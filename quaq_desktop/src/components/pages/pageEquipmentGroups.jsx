@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 // const generalModule = require("/DataAccess/database.js");
 
-const EquipmentGroups = () => {
+const PageEquipmentGroups = () => {
   // NETWORK CONSTANTS
   const network_ip = "http://localhost";
   const router_port = ":5500";
@@ -43,7 +43,7 @@ const EquipmentGroups = () => {
             equipment_id: Math.random().toString(36).substr(2, 9), // Temporary ID for testing
             company_id: newEquipmentGroup.company_id,
             equipmentGroupName: newEquipmentGroup.equipmentGroupName,
-            equipmntGroupDescription:
+            equipmentGroupDescription:
               newEquipmentGroup.equipmentGroupDescription,
             equipmentGroupDate: newEquipmentGroup.equipmentGroupDate, // <YYYY-MM-DD>
           },
@@ -170,74 +170,55 @@ const EquipmentGroups = () => {
       {/* TITLE */}
       <h1>EQUIPMENT GROUPS PAGE</h1>
 
-      {/* ADD CLIENT */}
+      {/* ADD EQUIPMENT GROUP */}
       <div>
-        <h2>ADD NEW CLIENT</h2>
+        <h2>ADD NEW EQUIPMENT GROUP</h2>
         <input
           type="text"
           placeholder="company_id"
-          value={newClient.company_id}
+          value={newEquipmentGroup.company_id}
           onChange={(e) =>
-            setNewClient({ ...newClient, company_id: e.target.value })
+            setNewEquipmentGroup({
+              ...newEquipmentGroup,
+              company_id: e.target.value,
+            })
           }
         />
         <input
           type="text"
-          placeholder="First Name"
-          value={newClient.clientFirstName}
+          placeholder="equipmentGroupName"
+          value={newEquipmentGroup.equipmentGroupName}
           onChange={(e) =>
-            setNewClient({ ...newClient, clientFirstName: e.target.value })
+            setNewEquipmentGroup({
+              ...newEquipmentGroup,
+              equipmentGroupName: e.target.value,
+            })
           }
         />
         <input
           type="text"
-          placeholder="Last Name"
-          value={newClient.clientLastName}
+          placeholder="equipmentGroupDescription"
+          value={newEquipmentGroup.equipmentGroupDescription}
           onChange={(e) =>
-            setNewClient({ ...newClient, clientLastName: e.target.value })
-          }
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={newClient.clientEmail}
-          onChange={(e) =>
-            setNewClient({ ...newClient, clientEmail: e.target.value })
-          }
-        />
-        <input
-          type="tel"
-          placeholder="Phone"
-          value={newClient.clientPhone}
-          onChange={(e) =>
-            setNewClient({ ...newClient, clientPhone: e.target.value })
+            setNewEquipmentGroup({
+              ...newEquipmentGroup,
+              equipmentGroupDescription: e.target.value,
+            })
           }
         />
         <input
           type="date"
-          placeholder="Date"
-          value={newClient.clientDate}
+          placeholder="equipmentGroupDate"
+          value={newEquipmentGroup.equipmentGroupDate}
           onChange={(e) =>
-            setNewClient({ ...newClient, clientDate: e.target.value })
+            setNewEquipmentGroup({
+              ...newEquipmentGroup,
+              equipmentGroupDate: e.target.value,
+            })
           }
         />
-        <input
-          type="text"
-          placeholder="Website"
-          value={newClient.clientWebsite}
-          onChange={(e) =>
-            setNewClient({ ...newClient, clientWebsite: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Address"
-          value={newClient.clientAddress}
-          onChange={(e) =>
-            setNewClient({ ...newClient, clientAddress: e.target.value })
-          }
-        />
-        <button onClick={addClient}>ADD CLIENT</button>
+
+        <button onClick={addEquipmentGroup}>ADD EQUIPMENT GROUP</button>
       </div>
 
       {/* LOAD CLIENT */}
@@ -378,4 +359,4 @@ const EquipmentGroups = () => {
   );
 };
 
-export default Clients;
+export default PageEquipmentGroups;
