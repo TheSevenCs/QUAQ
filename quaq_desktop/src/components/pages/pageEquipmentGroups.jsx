@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 // const generalModule = require("/DataAccess/database.js");
 
 const PageEquipmentGroups = () => {
@@ -138,14 +139,14 @@ const PageEquipmentGroups = () => {
         network_ip + router_port + "/clients",
         {
           params: {
-            client_id: deleteClient_id.client_id,
-            company_id: deleteClient_id.company_id,
+            client_id: deleteEquipmentGroup_id.client_id,
+            company_id: deleteEquipmentGroup_id.company_id,
           },
         }
       );
 
       // LOADS NEW DATA THEN RESETS FIELDS
-      getClients();
+      getEquipmentGroups();
       setDeleteEquipmentGroup_id({
         equipmentGroup_id: "",
         company_id: "",
@@ -167,6 +168,10 @@ const PageEquipmentGroups = () => {
   return (
     // COMPONENT DIV
     <div>
+      <Link to="/">
+        <button>HOME PAGE</button>
+      </Link>
+
       {/* TITLE */}
       <h1>EQUIPMENT GROUPS PAGE</h1>
 
@@ -224,95 +229,68 @@ const PageEquipmentGroups = () => {
       {/* LOAD CLIENT */}
       <div>
         <h2>LOAD BUTTON</h2>
-        <button onClick={getClients}>GET CLIENTS</button>
+        <button onClick={getEquipmentGroups}>GET EQUIPMENT GROUPS</button>
       </div>
 
       {/* UPDATE CLIENT */}
       <div>
-        <h2>UPDATE CLIENT</h2>
+        <h2>UPDATE EQUIPMENT GROUP</h2>
         <input
           type="text"
           placeholder="client_id"
-          value={editClient.client_id}
+          value={editEquipmentGroup.equipmentGroup_id}
           onChange={(e) =>
-            setEditClient({ ...editClient, client_id: e.target.value })
+            setEditEquipmentGroup({
+              ...editEquipmentGroup,
+              equipment_id: e.target.value,
+            })
           }
         />
         <input
           type="text"
           placeholder="company_id"
-          value={editClient.company_id}
+          value={editEquipmentGroup.company_id}
           onChange={(e) =>
-            setEditClient({ ...editClient, company_id: e.target.value })
+            setEditEquipmentGroup({
+              ...editEquipmentGroup,
+              company_id: e.target.value,
+            })
           }
         />
         <input
           type="text"
-          placeholder="First Name"
-          value={editClient.clientFirstName}
+          placeholder="equipmentGroupName"
+          value={editEquipmentGroup.equipmentGroupName}
           onChange={(e) =>
-            setEditClient({ ...editClient, clientFirstName: e.target.value })
+            setEditEquipmentGroup({
+              ...editEquipmentGroup,
+              equipmentGroupName: e.target.value,
+            })
           }
         />
         <input
           type="text"
-          placeholder="Last Name"
-          value={editClient.clientLastName}
+          placeholder="equipmentGroupDescription"
+          value={editEquipmentGroup.equipmentGroupDescription}
           onChange={(e) =>
-            setEditClient({ ...editClient, clientLastName: e.target.value })
-          }
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={editClient.clientEmail}
-          onChange={(e) =>
-            setEditClient({ ...editClient, clientEmail: e.target.value })
-          }
-        />
-        <input
-          type="tel"
-          placeholder="Phone"
-          value={editClient.clientPhone}
-          onChange={(e) =>
-            setEditClient({ ...editClient, clientPhone: e.target.value })
+            setEditEquipmentGroup({
+              ...editEquipmentGroup,
+              equipmentGroupDescription: e.target.value,
+            })
           }
         />
         <input
           type="date"
           placeholder="Date"
-          value={editClient.clientDate}
+          value={editEquipmentGroup.equipmentGroupDate}
           onChange={(e) =>
-            setEditClient({ ...editClient, clientDate: e.target.value })
+            setEditEquipmentGroup({
+              ...editEquipmentGroup,
+              equipmentGroupDate: e.target.value,
+            })
           }
         />
-        <select
-          name="clientActive"
-          value={editClient.clientActive.toString()}
-          onChange={(e) =>
-            setEditClient({ ...editClient, clientActive: e.target.value })
-          }
-        >
-          <option value={"true"}>Active/True</option>
-          <option value={"false"}>Inactive/False</option>
-        </select>
-        <input
-          type="text"
-          placeholder="Website"
-          value={editClient.clientWebsite}
-          onChange={(e) =>
-            setEditClient({ ...editClient, clientWebsite: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Address"
-          value={editClient.clientAddress}
-          onChange={(e) =>
-            setEditClient({ ...editClient, clientAddress: e.target.value })
-          }
-        />
-        <button onClick={updateClient}>UPDATE CLIENT</button>
+        <button onClick={updateEquipmentGroup}>UPDATE EQUIPMENT GROUP</button>
       </div>
 
       {/* DELETE CLIENT */}
@@ -320,11 +298,11 @@ const PageEquipmentGroups = () => {
         <h2>DELETE BY CLIENT ID</h2>
         <input
           type="text"
-          placeholder="DELETE CLIENT ID"
-          value={deleteClient_id.client_id}
+          placeholder="DELETE EQUIPMENT GROUP ID"
+          value={deleteEquipmentGroup_id.equipmentGroup_id}
           onChange={(e) =>
-            setDeleteClient_id({
-              ...deleteClient_id,
+            setDeleteEquipmentGroup_id({
+              ...deleteEquipmentGroup_id,
               client_id: e.target.value,
             })
           }
@@ -332,20 +310,20 @@ const PageEquipmentGroups = () => {
         <input
           type="text"
           placeholder="DELETE COMPANY ID"
-          value={deleteClient_id.company_id}
+          value={deleteEquipmentGroup_id.company_id}
           onChange={(e) =>
-            setDeleteClient_id({
-              ...deleteClient_id,
+            setDeleteEquipmentGroup_id({
+              ...deleteEquipmentGroup_id,
               company_id: e.target.value,
             })
           }
         />
-        <button onClick={deleteClient}>DELETE CLIENT</button>
+        <button onClick={deleteEquipmentGroup}>DELETE EQUIPMENT GROUPS</button>
       </div>
 
-      <h2>Client List</h2>
+      <h2>EQUIPMENT GROUPS LIST</h2>
       <ul>
-        {clients.map((client) => (
+        {equipmentGroups.map((client) => (
           <li key={client.client_id}>
             {Object.entries(client).map(([key, value]) => (
               <span key={key}>

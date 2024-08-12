@@ -1,6 +1,6 @@
-// React/components/pages/Clients.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 // const generalModule = require("/DataAccess/database.js");
 
 const PageClients = () => {
@@ -173,6 +173,9 @@ const PageClients = () => {
   return (
     // COMPONENT DIV
     <div>
+      <Link to="/">
+        <button>HOME PAGE</button>
+      </Link>
       {/* TITLE */}
       <h1>CLIENTS PAGE</h1>
 
