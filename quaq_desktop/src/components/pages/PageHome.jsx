@@ -20,6 +20,36 @@ const PageHome = () => {
           <button>EQUIPMENT</button>
         </Link>
       </div>
+      <div>
+        <Link to="/pageCompanies">
+          <button>COMPANIES</button>
+        </Link>
+      </div>
+      <div>
+        <Link to="/pageEmployees">
+          <button>EMPLOYEES</button>
+        </Link>
+      </div>
+      <div>
+        <Link to="/pageHours">
+          <button>HOURS</button>
+        </Link>
+      </div>
+      <div>
+        <Link to="/pageJobs">
+          <button>JOBS</button>
+        </Link>
+      </div>
+      <div>
+        <Link to="/pageLogin">
+          <button>LOGIN</button>
+        </Link>
+      </div>
+      <div>
+        <Link to="/pageSchedule">
+          <button>SCHEDULE</button>
+        </Link>
+      </div>
     </div>
   );
 };

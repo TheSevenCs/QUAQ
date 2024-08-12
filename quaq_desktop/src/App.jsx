@@ -7,6 +7,12 @@ import {
   PageClients,
   PageEquipmentGroups,
   PageEquipment,
+  PageCompanies,
+  PageEmployees,
+  PageHours,
+  PageJobs,
+  PageLogin,
+  PageSchedule,
 } from "./components/pages";
 
 const App = () => {
@@ -21,6 +27,12 @@ const App = () => {
             element={<PageEquipmentGroups />}
           />
           <Route path="/pageEquipment" element={<PageEquipment />} />
+          <Route path="/pageCompanies" element={<PageCompanies />} />
+          <Route path="/pageEmployees" element={<PageEmployees />} />
+          <Route path="/pageHours" element={<PageHours />} />
+          <Route path="/pageJobs" element={<PageJobs />} />
+          <Route path="/pageLogin" element={<PageLogin />} />
+          <Route path="/pageSchedule" element={<PageSchedule />} />
         </Routes>
       </div>
     </BrowserRouter>
