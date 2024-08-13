@@ -1,5 +1,5 @@
 const express = require("express");
-const generalModule = require("../database.js");
+const generalModule = require("../Database.js");
 const router = express.Router();
 
 // CREATE
