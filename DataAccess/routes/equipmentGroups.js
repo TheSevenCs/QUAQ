@@ -1,5 +1,5 @@
 const express = require("express");
-const generalModule = require("../database.js");
+const generalModule = require("../Database.js");
 const router = express.Router();
 
 // CREATE
@@ -9,13 +9,13 @@ router.post("/", async (req, res) => {
     groupName,
     groupDescription,
     groupDate, // YYYY-MM-DD
-  } = req.body;
+  } = req.query;
 
   const newGroup = {
     equipmentGroup_id: (
       await generalModule.TEMPgenerateID(9000000000000, 9999999999999)
     ).toString(),
-    company_id,
+    company_id: company_id,
     equipmentGroupName: groupName,
     equipmentGroupDescription: groupDescription,
     equipmentGroupDate: groupDate,
@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
       "EquipmentGroups",
       newGroup
     );
-    console.log("FROM equipmentGroups.js, NEW Equipment Group ADDED: ", result);
+    // console.log("FROM equipmentGroups.js, NEW Equipment Group ADDED: ", result);
     res
       .status(201)
       .json({ message: "Equipment Group created successfully", result });
@@ -38,7 +38,6 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
 // READ
 router.get("/", async (req, res) => {
   try {
@@ -65,11 +64,10 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
 // UPDATE
 router.patch("/", async (req, res) => {
   const {
-    group_id,
+    equipmentGroup_id,
     company_id,
     editedName,
     editedDescription,
