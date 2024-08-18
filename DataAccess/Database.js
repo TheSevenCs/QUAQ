@@ -37,7 +37,7 @@ const addToDatabase = async (table, data) => {
     throw error;
   }
 };
-// READ
+// READ (SCAN)
 const getFromDatabase = async (table, attribute = null, value = null) => {
   try {
     const params = {
@@ -59,6 +59,32 @@ const getFromDatabase = async (table, attribute = null, value = null) => {
     throw error;
   }
 };
+// READ (QUERY)
+const queryFromDatabase = async (
+  table,
+  keyConditionExpression,
+  expressionAttributeValues,
+  filterExpression = null // Optional filter expression
+) => {
+  try {
+    const params = {
+      TableName: table,
+      KeyConditionExpression: keyConditionExpression,
+      ExpressionAttributeValues: expressionAttributeValues,
+    };
+
+    if (filterExpression != null) {
+      params.FilterExpression = filterExpression;
+    }
+
+    const result = await dynamoClient.send(new QueryCommand(params));
+    return result.Items;
+  } catch (error) {
+    console.error("FROM Database.js, ERROR QUERYING DATA:", error);
+    throw error;
+  }
+};
+
 // UPDATE
 const updateItemInDatabase = async (
   tableName,
@@ -112,6 +138,7 @@ const TEMPgenerateID = async (minID, maxID) => {
 module.exports = {
   addToDatabase: addToDatabase,
   getFromDatabase: getFromDatabase,
+  queryFromDatabase: queryFromDatabase,
   deleteFromDatabase: deleteFromDatabase,
   updateItemInDatabase: updateItemInDatabase,
   // getNewestID: getNewestID,
