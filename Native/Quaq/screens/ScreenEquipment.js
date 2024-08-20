@@ -1,11 +1,22 @@
-// ScreenEquipment.js
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import { View, StyleSheet, Text, StatusBar } from "react-native";
 import { RadialGradient } from "react-native-gradients";
-import CustomButton from "../Components/CustomButton"; // Import the reusable button component
+import CustomButton from "../Components/CustomButton";
+import Flexbox2x6 from "../Components/GroupContainer";
 
 const ScreenEquipment = () => {
+  const [groupData, setGroupData] = useState([
+    { title: "Group 1" },
+    { title: "Group 2" },
+    { title: "Group 3" },
+    { title: "Group 1" },
+    { title: "Group 2" },
+  ]);
+
+  const handleUpdateTitle = (updatedData) => {
+    setGroupData(updatedData);
+  };
+
   return (
     <View style={styles.container}>
       <RadialGradient
@@ -14,7 +25,7 @@ const ScreenEquipment = () => {
         rx="50%"
         ry="50%"
         colorList={colorList}
-        style={styles.gradientBg} // Ensure RadialGradient covers the entire screen
+        style={styles.gradientBg}
       />
 
       <View style={styles.contentContainer}>
@@ -32,9 +43,23 @@ const ScreenEquipment = () => {
         <CustomButton
           backgroundColor="#000000"
           buttonStyle={styles.CDButton}
-          lineStyle={styles.deleteLine} // Display a horizontal line
+          lineStyle={styles.deleteLine}
         />
       </View>
+
+      <View style={styles.groupContainer}>
+        <Flexbox2x6 data={groupData} onUpdateTitle={handleUpdateTitle} />
+      </View>
+
+      <View style={styles.deleteBtnContainer}>
+        <CustomButton
+          text="Delete"
+          textStyle={styles.customText}
+          backgroundColor="#000000"
+          buttonStyle={styles.CDButton}
+        />
+      </View>
+
       <StatusBar style="light" />
     </View>
   );
@@ -50,17 +75,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "transparent", // Ensure background color is transparent
+    backgroundColor: "transparent",
   },
   gradientBg: {
-    ...StyleSheet.absoluteFillObject, // Ensure gradient covers the entire view
+    ...StyleSheet.absoluteFillObject,
   },
   contentContainer: {
-    position: "absolute", // Ensure content is above gradient
+    position: "absolute",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    zIndex: 1, // Make sure content is above other elements
+    zIndex: 1,
+  },
+  groupContainer: {
+    width: "100%",
+    bottom: 415,
   },
   title: {
     color: "white",
@@ -84,28 +113,41 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   goldLine: {
-    height: 2, // Thickness of the line
+    height: 2,
     marginTop: 12,
-    backgroundColor: "#D9AC6E", // Color of the line
-    width: "100%", // Full width of the container
+    backgroundColor: "#D9AC6E",
+    width: "100%",
   },
   CDButtonsContainer: {
+    position: "absolute",
     width: "100%",
-    alignItems: "center", // Center the button horizontally
+    alignItems: "center",
     justifyContent: "center",
     bottom: 450,
     gap: 18,
-    flex: 1,
     flexDirection: "row",
   },
   CDButton: {
     width: 109,
     height: 42,
   },
+  deleteBtnContainer: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    bottom: 70,
+    gap: 18,
+    flexDirection: "row",
+  },
   deleteLine: {
     width: 20,
-    height: 2, // Thickness of the line
+    height: 2,
     backgroundColor: "white",
+  },
+  customText: {
+    color: "#fff",
+    fontSize: 24,
+    fontFamily: "Segoe UI",
   },
 });
 

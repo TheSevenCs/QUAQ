@@ -14,7 +14,7 @@ const CustomButton = ({
   imageSource,
   buttonStyle,
   lineStyle,
-  Text,
+  text, // Changed from Text to text
   textStyle,
 }) => {
   const [bgColor, setBgColor] = useState(backgroundColor);
@@ -32,7 +32,7 @@ const CustomButton = ({
       <View style={[styles.button, { backgroundColor: bgColor }, buttonStyle]}>
         {imageSource && <Image source={imageSource} style={styles.image} />}
         {lineStyle && <View style={[styles.line, lineStyle]} />}
-        {Text && <Text style={[styles.buttonText, textStyle]}>Text</Text>}
+        {text && <Text style={[styles.buttonText, textStyle]}>{text}</Text>}
       </View>
     </TouchableWithoutFeedback>
   );
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     width: 109,
     height: 42,
     borderColor: "#D9AC6E",
-    borderWidth: 2,
+    borderWidth: 3,
     borderRadius: 9,
     alignItems: "center",
     justifyContent: "center",
@@ -57,6 +57,9 @@ const styles = StyleSheet.create({
     width: 20,
     height: 2, // Thickness of the line
     backgroundColor: "white",
+  },
+  buttonText: {
+    color: "#fff", // Ensure text color is white
   },
 });
 
