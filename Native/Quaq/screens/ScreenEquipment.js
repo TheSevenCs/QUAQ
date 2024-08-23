@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   },
   gradientBg: {
     ...StyleSheet.absoluteFillObject,
+    zIndex: -1,
   },
   contentContainer: {
     position: "absolute",
