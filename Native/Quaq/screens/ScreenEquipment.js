@@ -11,6 +11,7 @@ const ScreenEquipment = () => {
     { title: "Group 3" },
     { title: "Group 1" },
     { title: "Group 2" },
+    { title: "Group 1" },
   ]);
 
   const handleUpdateTitle = (updatedData) => {
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
   },
   groupContainer: {
     width: "100%",
+    height: 310, // Set a fixed height to allow scrolling
     bottom: 415,
   },
   title: {
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    bottom: 70,
+    bottom: 390,
     gap: 18,
     flexDirection: "row",
   },

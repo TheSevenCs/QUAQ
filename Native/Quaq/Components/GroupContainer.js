@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import EquipmentGroup from "./EquipmentGroup";
 
 const Flexbox2x6 = ({ data, onUpdateTitle }) => {
@@ -13,7 +13,7 @@ const Flexbox2x6 = ({ data, onUpdateTitle }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.innerContainer}>
         {items.map((item, index) => (
           <EquipmentGroup
@@ -24,15 +24,13 @@ const Flexbox2x6 = ({ data, onUpdateTitle }) => {
           />
         ))}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollContainer: {
     alignItems: "center", // Center the innerContainer horizontally
-    width: "100%", // Ensure container spans full width
   },
   innerContainer: {
     flexDirection: "row",
