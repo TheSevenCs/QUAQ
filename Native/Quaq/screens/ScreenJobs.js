@@ -92,16 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D9AC6E",
     width: "100%",
   },
-  backArrowContainer: {
-    position: "absolute",
-    left: 30,
-    top: 35,
-    paddingVertical: 8,
-    paddingHorizontal: 18.3,
-    borderColor: "#D9AC6E",
-    borderWidth: 2,
-    borderRadius: 8,
-  },
+  
 });
 
 export default ScreenJobs;
