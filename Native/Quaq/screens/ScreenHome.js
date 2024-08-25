@@ -12,7 +12,7 @@ import { RadialGradient } from "react-native-gradients";
 
 const UserInfo = {
   position: "Technician",
-  company: "MarmotTech",
+  company: "MarmotTechnologies Inc.",
 };
 
 const ScreenHome = () => {
@@ -28,8 +28,10 @@ const ScreenHome = () => {
           />
         </View>
         <View style={styles.userInfo}>
-          <Text style={styles.userText}>Company: {UserInfo.company}</Text>
-          <Text style={styles.userText}>Position: {UserInfo.position}</Text>
+          <Text style={styles.userText} numberOfLines={1}>
+            {UserInfo.company}
+          </Text>
+          <Text style={styles.userText}>{UserInfo.position}</Text>
         </View>
 
         <View style={styles.navBtnContainer}>
@@ -37,7 +39,12 @@ const ScreenHome = () => {
             <TouchableOpacity
               style={styles.navBtn}
               onPress={() => navigation.navigate("Schedule")}
-            ></TouchableOpacity>
+            >
+              <Image
+                source={require("../assets/schedule.png")}
+                style={images.scheduleIcon}
+              ></Image>
+            </TouchableOpacity>
             <View style={styles.btnTitleContainer}>
               <Text style={styles.btnTitle}>Schedule</Text>
             </View>
@@ -46,7 +53,12 @@ const ScreenHome = () => {
             <TouchableOpacity
               style={styles.navBtn}
               onPress={() => navigation.navigate("Jobs")}
-            ></TouchableOpacity>
+            >
+              <Image
+                source={require("../assets/jobs.png")}
+                style={images.jobsIcon}
+              ></Image>
+            </TouchableOpacity>
             <View style={styles.btnTitleContainer}>
               <Text style={styles.btnTitle}>Jobs</Text>
             </View>
@@ -55,7 +67,12 @@ const ScreenHome = () => {
             <TouchableOpacity
               style={styles.navBtn}
               onPress={() => navigation.navigate("Clients")}
-            ></TouchableOpacity>
+            >
+              <Image
+                source={require("../assets/clients.png")}
+                style={images.clientIcon}
+              ></Image>
+            </TouchableOpacity>
             <View style={styles.btnTitleContainer}>
               <Text style={styles.btnTitle}>Clients</Text>
             </View>
@@ -64,7 +81,12 @@ const ScreenHome = () => {
             <TouchableOpacity
               style={styles.navBtn}
               onPress={() => navigation.navigate("Equipment")}
-            ></TouchableOpacity>
+            >
+              <Image
+                source={require("../assets/equipment.png")}
+                style={images.equipmentIcon}
+              ></Image>
+            </TouchableOpacity>
             <View style={styles.btnTitleContainer}>
               <Text style={styles.btnTitle}>Equipment</Text>
             </View>
@@ -90,6 +112,30 @@ const colorList = [
   { offset: "100%", color: "#131313", opacity: "1" },
 ];
 
+const images = StyleSheet.create({
+  scheduleIcon: {
+    top: 1,
+    left: 2,
+    height: 73,
+    width: 70,
+  },
+  jobsIcon: {
+    top: 1,
+    left: 2,
+    height: 60,
+    width: 74,
+  },
+  clientIcon: {
+    top: 1,
+    left: 2,
+    height: 63,
+    width: 74,
+  },
+  equipmentIcon: {
+    height: 69,
+    width: 74,
+  },
+});
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -124,7 +170,7 @@ const styles = StyleSheet.create({
   },
   userInfo: {
     top: 5,
-    height: 82,
+    height: 70,
     width: 320,
     backgroundColor: "black",
     borderColor: "#D9AC6E",
@@ -135,10 +181,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   userText: {
+    maxWidth: 290,
     color: "white",
     fontSize: 20,
     textAlign: "center",
-    marginVertical: 5,
+    marginVertical: 1,
   },
   navBtnContainer: {
     flexDirection: "row",
@@ -157,6 +204,8 @@ const styles = StyleSheet.create({
     width: 129,
   },
   navBtn: {
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "black",
     borderColor: "#D9AC6E",
     borderWidth: 4,
