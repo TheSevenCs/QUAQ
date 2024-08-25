@@ -37,7 +37,7 @@ const PageHome = () => {
       </div>
       <div>
         <Link to="/pageJobs">
-          <button>JOBS</button>
+          <button>JOBS (PERSONAL SCHEDULE)</button>
         </Link>
       </div>
       <div>
@@ -47,7 +47,12 @@ const PageHome = () => {
       </div>
       <div>
         <Link to="/pageSchedule">
-          <button>SCHEDULE</button>
+          <button>SCHEDULE (COMPANY SCHEDULE)</button>
+        </Link>
+      </div>
+      <div>
+        <Link to="/pageJobSearch">
+          <button>JOB SEARCH</button>
         </Link>
       </div>
     </div>
