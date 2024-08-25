@@ -4,8 +4,19 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 const JobEntry = ({ jobName, startTime }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.dateText}>{jobName}</Text>
-      <Text style={styles.dateText}>Start Time: {startTime}</Text>
+      <Text style={styles.textTitle} numberOfLines={1}>
+        {jobName}
+      </Text>
+
+      <View style={styles.containerStart}>
+        <Text style={styles.textStart} numberOfLines={1}>
+          Start Time
+        </Text>
+        <View style={styles.line}></View>
+        <Text style={styles.textTime} numberOfLines={1}>
+          {startTime}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -24,21 +35,44 @@ const styles = StyleSheet.create({
 
     flexDirection: "row",
     alignItems: "center", // vertical
-    justifyContent: "center", // horizontal space
+    justifyContent: "space-between", // horizontal space
 
     marginTop: 15, // only margin top on all components
   },
-  dateText: {
+  containerStart: {
+    alignItems: "center",
+    justifyContent: "center",
+    // backgroundColor: "red",
+
+    // marginRight: 12.5,
+    marginRight: "4%",
+    maxWidth: "25%",
+  },
+  textTitle: {
     color: "white",
-    textAlign: "center",
-    fontSize: 25,
-    paddingHorizontal: 15,
+    fontSize: 27.5,
+    fontFamily: "Selawik-Semilight",
+
+    // marginLeft: 12.5,
+    marginLeft: "4%",
+    maxWidth: "60%",
+
+    maxHeight: "50%",
+  },
+  textStart: {
+    color: "white",
+    fontSize: 15,
+    fontFamily: "Selawik-Semilight",
+  },
+  textTime: {
+    color: "white",
+    fontSize: 22.5,
     fontFamily: "Selawik-Semilight",
   },
   line: {
-    flex: 1, // Make the lines fill the available space
     height: 1,
-    backgroundColor: "#D9AC6E",
+    backgroundColor: "white",
+    width: "100%",
   },
 });
 

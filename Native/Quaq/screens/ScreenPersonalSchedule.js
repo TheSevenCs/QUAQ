@@ -54,11 +54,16 @@ const ScreenPersonalSchedule = () => {
 
         {/* ENTRIES */}
         <DateHeader date={testerDate1}></DateHeader>
-        <JobEntry jobName={"JOB1"} startTime={"56"}></JobEntry>
+        <JobEntry jobName={"JOB1"} startTime={"56 AM"}></JobEntry>
 
         <DateHeader date={"2024/08/24"}></DateHeader>
-        <JobEntry jobName={"JOB2"} startTime={"56"}></JobEntry>
-        <JobEntry jobName={"JOB3"} startTime={"56"}></JobEntry>
+        <JobEntry
+          jobName={
+            "JOB2 when the text is too long MILKY RAY MILKY RAY MILKY RAY MILKY RAY MILKY RAY MILKY RAY MILKY RAY "
+          }
+          startTime={"56 AM"}
+        ></JobEntry>
+        <JobEntry jobName={"JOB3"} startTime={"56 AM"}></JobEntry>
 
         {/* EDIT BUTTONS */}
         <EditButtons></EditButtons>
