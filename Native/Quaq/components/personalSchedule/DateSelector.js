@@ -11,15 +11,23 @@ const DateSelector = ({
   pressedPreviousDate,
   pressedNextDate,
 }) => {
+  const formatDate = (date1, date2) => {
+    const formattedDate1 = date1.slice(5, 10);
+    const formattedDate2 = date2.slice(5, 10);
+
+    const formattedDate = formattedDate1 + " - " + formattedDate2;
+    return formattedDate;
+  };
+
+  const formattedDate = formatDate(date1, date2);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={pressedPreviousDate}>
         <Text style={styles.arrowText}>{"<"}</Text>
       </TouchableOpacity>
 
-      <Text style={styles.dateText}>
-        {date1} - {date2}
-      </Text>
+      <Text style={styles.dateText}>{formattedDate}</Text>
 
       <TouchableOpacity onPress={pressedNextDate}>
         <Text style={styles.arrowText}>{">"}</Text>

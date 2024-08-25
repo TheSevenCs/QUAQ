@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center", // vertical
     justifyContent: "center", // horizontal space
-    // padding: X,
+
+    marginTop: 15, // only margin top on all components
   },
 
   dateText: {

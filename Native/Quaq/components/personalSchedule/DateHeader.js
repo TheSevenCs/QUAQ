@@ -45,12 +45,13 @@ const styles = StyleSheet.create({
     alignItems: "center", // vertical
     justifyContent: "space-between", // horizontal
     width: "100%",
+    marginTop: 15, // only top margin on all elements
   },
   dateText: {
     color: "white",
     // textAlign: "center",
     fontSize: 25,
-    paddingVertical: 15,
+    // paddingVertical: 15,
     paddingHorizontal: 15,
   },
   line: {
