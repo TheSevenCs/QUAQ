@@ -1,21 +1,24 @@
 // import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { ScreenHome, ScreenClients, ScreenPersonalSchedule } from "./screens";
+import {
+  ScreenHome,
+  ScreenClients,
+  ScreenEquipment,
+  ScreenJobs,
+} from "./screens";
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="PersonalSchedule"
-      screenOptions={{ headerShown: false }} // Hides default ugly header banner
+      initialRouteName="Home"
+      screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="Home" component={ScreenHome} />
       <Stack.Screen name="Clients" component={ScreenClients} />
-      <Stack.Screen
-        name="PersonalSchedule"
-        component={ScreenPersonalSchedule}
-      />
+      <Stack.Screen name="Equipment" component={ScreenEquipment} />
+      <Stack.Screen name="Jobs" component={ScreenJobs} />
     </Stack.Navigator>
   );
 };
