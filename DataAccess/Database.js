@@ -64,7 +64,7 @@ const queryFromDatabase = async (
   table,
   keyConditionExpression,
   expressionAttributeValues,
-  filterExpression = null // Optional filter expression
+  filterExpression = null // Optional filter expression.
 ) => {
   try {
     const params = {
@@ -84,7 +84,6 @@ const queryFromDatabase = async (
     throw error;
   }
 };
-
 // UPDATE
 const updateItemInDatabase = async (
   tableName,
