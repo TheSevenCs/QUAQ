@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     // paddingVertical: 15,
     paddingHorizontal: 15,
+    fontFamily: "Selawik-Semilight",
   },
   line: {
     flex: 1, // Make the lines fill the available space

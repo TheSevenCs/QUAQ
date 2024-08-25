@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
 
     marginTop: 15, // only margin top on all components
   },
-
   dateText: {
     color: "white",
     textAlign: "center",
     fontSize: 25,
     paddingHorizontal: 15,
+    fontFamily: "Selawik-Semilight",
   },
   line: {
     flex: 1, // Make the lines fill the available space

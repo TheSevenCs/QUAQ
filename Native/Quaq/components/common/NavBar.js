@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: "white",
     fontSize: 33,
+    fontFamily: "Selawik-Semilight",
   },
   line: {
     height: 2,

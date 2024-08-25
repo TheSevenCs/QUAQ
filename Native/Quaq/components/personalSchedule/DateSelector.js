@@ -49,11 +49,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     paddingVertical: 20,
     paddingHorizontal: 15,
+    fontFamily: "Selawik-Semilight",
   },
   arrowText: {
     color: "#D9AC6E",
     fontSize: 35,
     marginBottom: 5,
+    fontFamily: "Selawik-Semilight",
   },
 });
 

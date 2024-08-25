@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 24,
     fontWeight: "bold",
+    fontFamily: "Selawik-Semilight",
   },
 });
 

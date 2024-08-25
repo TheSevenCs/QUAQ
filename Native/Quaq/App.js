@@ -2,6 +2,8 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AppNavigator from "./navigator.js";
 
+import { useFonts } from "expo-font";
+
 import { View, StyleSheet, Platform, StatusBar } from "react-native";
 import axios from "axios";
 
@@ -9,6 +11,15 @@ import axios from "axios";
 import { screenHome, screenClients } from "./screens";
 
 export default function App() {
+  // Load the font using useFonts
+  let [fontsLoaded] = useFonts({
+    "Selawik-Semilight": require("./assets/fonts/Selawik-Semilight.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <NavigationContainer>
       <AppNavigator />
