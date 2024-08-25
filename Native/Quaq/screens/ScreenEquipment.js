@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, StatusBar } from "react-native";
 import { RadialGradient } from "react-native-gradients";
-import CustomButton from "../Components/CustomButton";
-import Flexbox2x6 from "../Components/GroupContainer";
-import BackArrow from "../Components/backarrow";
+import CustomButton from "../components/CustomButton";
+import Flexbox2x6 from "../components/GroupContainer";
+import BackArrow from "../components/backarrow";
 
 const ScreenEquipment = () => {
   const [groupData, setGroupData] = useState([
