@@ -14,6 +14,12 @@ const ScreenHome = () => {
       >
         <Text style={styles.buttonText}>Go to Clients Screen</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("PersonalSchedule")}
+      >
+        <Text style={styles.buttonText}>Go to PersonalSchedule Screen</Text>
+      </TouchableOpacity>
     </View>
   );
 };
