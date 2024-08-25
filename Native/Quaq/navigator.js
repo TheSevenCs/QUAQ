@@ -5,6 +5,7 @@ import {
   ScreenClients,
   ScreenEquipment,
   ScreenJobs,
+  ScreenPersonalSchedule,
 } from "./screens";
 
 const Stack = createStackNavigator();
@@ -19,6 +20,10 @@ const AppNavigator = () => {
       <Stack.Screen name="Clients" component={ScreenClients} />
       <Stack.Screen name="Equipment" component={ScreenEquipment} />
       <Stack.Screen name="Jobs" component={ScreenJobs} />
+      <Stack.Screen
+        name="PersonalSchedule"
+        component={ScreenPersonalSchedule}
+      />
     </Stack.Navigator>
   );
 };

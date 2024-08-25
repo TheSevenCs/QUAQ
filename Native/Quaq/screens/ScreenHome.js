@@ -38,7 +38,7 @@ const ScreenHome = () => {
           <View style={styles.buttonWithTitle}>
             <TouchableOpacity
               style={styles.navBtn}
-              onPress={() => navigation.navigate("Schedule")}
+              onPress={() => navigation.navigate("PersonalSchedule")}
             >
               <Image
                 source={require("../assets/schedule.png")}
