@@ -8,7 +8,8 @@ import { View, StyleSheet, Platform, StatusBar } from "react-native";
 import axios from "axios";
 
 // IMPORT PAGES/SCREENS COMPONENTS
-import { screenHome, screenClients } from "./screens";
+// import { screenHome, screenClients } from "./screens";
+import BackgroundGradient from "./components/common/BackgroundGradient.js";
 
 export default function App() {
   // Load the font using useFonts
@@ -21,9 +22,16 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
+    <View style={styles.container}>
+      <View style={styles.containerGradient}>
+        <BackgroundGradient />
+      </View>
+      <View style={styles.containerContent}>
+        <NavigationContainer>
+          <AppNavigator />
+        </NavigationContainer>
+      </View>
+    </View>
   );
 }
 
@@ -32,8 +40,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "orange",
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    position: "relative",
+  },
+  containerGradient: {
+    ...StyleSheet.absoluteFillObject, // Ensures the gradient covers the entire screen
+    zIndex: -1, // Push the gradient behind everything else
+  },
+  containerContent: {
+    flex: 1,
+    zIndex: 1, // Ensures the content is above the gradient
   },
 });

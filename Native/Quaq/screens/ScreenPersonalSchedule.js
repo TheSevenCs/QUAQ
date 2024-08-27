@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   StatusBar,
+  Image,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import styleCommon from "../styles/styleCommon";
-import { RadialGradient } from "react-native-gradients";
+// import { RadialGradient } from "react-native-gradients";
 
 // IMPORT COMPONENTS
 import {
@@ -18,7 +19,7 @@ import {
   EditButtons,
   JobEntry,
 } from "../components/personalSchedule";
-import { NavBar } from "../components/common";
+import { NavBar, BackgroundGradient } from "../components/common";
 
 const ScreenPersonalSchedule = () => {
   const navigation = useNavigation();
@@ -33,26 +34,25 @@ const ScreenPersonalSchedule = () => {
 
       {/* GRADIENT BACKGROUND */}
       <View style={styles.gradientContainer}>
-        <RadialGradient
+        {/* <RadialGradient
           x="50%"
           y="50%"
           rx="50%"
           ry="50%"
           colorList={colorList}
           style={styles.gradientBg}
-        />
+        /> */}
+        <BackgroundGradient />
       </View>
+      <View style={styles.testerBg}></View>
 
       {/* MAIN CONTENT */}
       <View style={styles.contentContainer}>
-        {/* HEADER BAR */}
-        <NavBar screenTitle={"Personal Schedule"}></NavBar>
+        <NavBar screenTitle={"Schedule"}></NavBar>
 
-        {/* DATE SELECTOR */}
         <DateSelector date1={testerDate1} date2={testerDate2}></DateSelector>
         <View style={styles.goldLine}></View>
 
-        {/* ENTRIES */}
         <DateHeader date={testerDate1}></DateHeader>
         <JobEntry jobName={"JOB1"} startTime={"56 AM"}></JobEntry>
 
@@ -65,7 +65,6 @@ const ScreenPersonalSchedule = () => {
         ></JobEntry>
         <JobEntry jobName={"JOB3"} startTime={"56 AM"}></JobEntry>
 
-        {/* EDIT BUTTONS */}
         <EditButtons></EditButtons>
       </View>
     </View>
@@ -82,14 +81,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: "relative", // Allows the content to be positioned over the gradient
-    backgroundColor: "transparent",
+    // backgroundColor: "transparent", // This makes the gradient not appear
   },
   gradientContainer: {
     ...StyleSheet.absoluteFillObject,
     zIndex: -1, // Push the gradient behind everything else
   },
   gradientBg: {
-    flex: 1,
+    zIndex: -1,
+    position: "absolute",
+    // backgroundColor: "red",
   },
   contentContainer: {
     flex: 1, // Make the container take up the full screen

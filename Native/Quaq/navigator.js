@@ -7,6 +7,7 @@ import {
   ScreenJobs,
   ScreenPersonalSchedule,
 } from "./screens";
+import { BackgroundGradient } from "./components/common";
 
 const Stack = createStackNavigator();
 
