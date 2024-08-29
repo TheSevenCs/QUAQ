@@ -24,9 +24,36 @@ import { NavBar, BackgroundGradient } from "../components/common";
 const ScreenPersonalSchedule = () => {
   const navigation = useNavigation();
 
+  const network_ip = "http://localhost";
+  const router_port = ":5500";
+
+  // STATE VARIABLES
+  const [clients, setClients] = useState([]);
+
+  // Automatically called when the component is loaded
+  useEffect(() => {
+    getClients();
+  }, []);
+
   const testerDate1 = "2024/08/23";
   const testerDate2 = "2024/08/25";
   const testerDateRange1 = "2024/08/23 - 2024/08/23";
+
+  // READ
+  const getClients = async () => {
+    console.log("FROM ScreenPersonalSchedule."); // TESTING
+    try {
+      const response = await axios.get(
+        network_ip + router_port + "/personalScheduleFunc"
+      );
+      setClients(response.data);
+      // console.log("response.data: ", response.data); // TESTING
+      // console.log("response: ", response); // TESTING
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching clients:", error);
+    }
+  };
 
   return (
     <View style={styles.container}>
