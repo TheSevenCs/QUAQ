@@ -29,6 +29,13 @@ app.use("/equipmentGroups", equipmentGroupsRouter);
 const equipmentRouter = require("./routes/equipment.js");
 app.use("/equipment", equipmentRouter);
 
+// TESTING ROUTERS
+const personalScheduleFuncRouter = require("./routes/personalScheduleFunc.js");
+app.use("/personalScheduleFunc", personalScheduleFuncRouter);
+
+const jobsByClientFuncRouter = require("./routes/jobsByClientFunc.js");
+app.use("/jobsByClientFunc", jobsByClientFuncRouter);
+
 // STARTING THE SERVER
 const PORT = 5500;
 const HOST = "localhost"; // UPDATE THIS IP WITH ifconfig --> en0 --> inet 192.168.0.124

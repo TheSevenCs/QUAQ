@@ -10,6 +10,7 @@ import axios from "axios";
 // IMPORT PAGES/SCREENS COMPONENTS
 // import { screenHome, screenClients } from "./screens";
 import BackgroundGradient from "./components/common/BackgroundGradient.js";
+import { UserProvider } from "./components/UserInfo.js";
 
 export default function App() {
   // Load the font using useFonts
@@ -27,9 +28,11 @@ export default function App() {
         <BackgroundGradient />
       </View>
       <View style={styles.containerContent}>
-        <NavigationContainer>
-          <AppNavigator />
-        </NavigationContainer>
+        <UserProvider>
+          <NavigationContainer>
+            <AppNavigator />
+          </NavigationContainer>
+        </UserProvider>
       </View>
     </View>
   );

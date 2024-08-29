@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const PageHours = () => {
+  const calculateHours = async () => {};
+
   return (
     <div>
       <Link to="/">

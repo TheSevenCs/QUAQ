@@ -36,6 +36,9 @@ const PageClients = () => {
     company_id: "",
   });
 
+  const [clientIdForJobSearch, setClientIdForJobSearch] = useState("");
+  const [jobData, setJobData] = useState(null);
+
   useEffect(() => {
     getClients();
   }, []);
@@ -167,6 +170,17 @@ const PageClients = () => {
       console.log("FROM pageClients.jsx, Client DELETED: ", response);
     } catch (error) {
       console.log("FROM pageClients.jsx, ERROR DELETING Client: ", error);
+    }
+  };
+  // JOB SEARCH BY CLIENT ID
+  const searchJobByClientId = async () => {
+    try {
+      const response = await axios.get(
+        network_ip + router_port + "/jobsByClientFunc"
+      );
+      setJobData(response.data);
+    } catch (error) {
+      console.error("Error fetching job data:", error);
     }
   };
 
@@ -383,7 +397,25 @@ const PageClients = () => {
           </li>
         ))}
       </ul>
-    </div>
+
+      {/* JOB SEARCH BY CLIENT ID */}
+      <div>
+        <h2>JOB SEARCH BY CLIENT ID</h2>
+        <input
+          type="text"
+          placeholder="Enter Client ID"
+          value={clientIdForJobSearch}
+          onChange={(e) => setClientIdForJobSearch(e.target.value)}
+        />
+        <button onClick={searchJobByClientId}>SEARCH JOBS</button>
+        {jobData && (
+          <div>
+            <h3>Job Data:</h3>
+            <pre>{JSON.stringify(jobData, null, 2)}</pre>
+          </div>
+        )}
+      </div>
+    </div> // MAIN DIV END
   );
 };
 
