@@ -19,6 +19,36 @@ const ScreenEquipment = () => {
     setGroupData(updatedData);
   };
 
+  const deleteGroup = async (groupId) => {
+    try {
+      const response = await axios.delete(
+        network_ip + router_port + "/equipmentGroups",
+        {
+          params: {
+            group_id: groupId,
+          },
+        }
+      );
+
+      // LOADS NEW DATA THEN RESETS FIELDS
+      getClients();
+      setDeleteClient_id({
+        client_id: "",
+        company_id: "",
+        clientFirstName: "",
+        clientLastName: "",
+        clientEmail: "",
+        clientPhone: "",
+        clientDate: "",
+        clientActive: "",
+        clientWebsite: "",
+        clientAddress: "",
+      });
+      console.log("FROM pageClients.jsx, Client DELETED: ", response);
+    } catch (error) {
+      console.log("FROM pageClients.jsx, ERROR DELETING Client: ", error);
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>

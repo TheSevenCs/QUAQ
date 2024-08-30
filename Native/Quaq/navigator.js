@@ -6,6 +6,7 @@ import {
   ScreenEquipment,
   ScreenJobs,
   ScreenPersonalSchedule,
+  ScreenLogin,
 } from "./screens";
 import { BackgroundGradient } from "./components/common";
 
@@ -14,7 +15,7 @@ const Stack = createStackNavigator();
 const AppNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="Login"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="Home" component={ScreenHome} />
@@ -25,6 +26,7 @@ const AppNavigator = () => {
         name="PersonalSchedule"
         component={ScreenPersonalSchedule}
       />
+      <Stack.Screen name="Login" component={ScreenLogin} />
     </Stack.Navigator>
   );
 };
