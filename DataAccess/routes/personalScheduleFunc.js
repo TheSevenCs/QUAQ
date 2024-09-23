@@ -13,31 +13,47 @@ const router = express.Router();
 // READ (QUERY TESTER)
 router.get("/", async (req, res) => {
   try {
+    console.log("PERSONAL SCHEDULE FUNCTION ENTERED");
     // GET PARAMS FROM REQ
     const { company_id, employee_id, startDate, endDate } = req.query;
 
+    // VERIFY PARAMS
     if (!company_id || !employee_id || !startDate || !endDate) {
       res.status(400).json({ message: "FROM TESTER.js FILE, PARAM MISSING" });
     }
 
+    // ADJUST FORMAT TO YYYYMMDD_
+    const formattedStartDate = `${startDate.split("/").join("")}_`;
+    const formattedEndDate = `${endDate.split("/").join("")}_`;
+
     // FORM THE PARAMS TO SEND TO GENERAL FUNCTIONS
-    const keyConditionExpression = "company_id = :COMPANY";
+    const keyConditionExpression =
+      "company_id = :COMPANY AND jobDate_job_id BETWEEN :START AND :END";
     const expressionAttributeValues = {
       ":COMPANY": company_id,
-      ":START": startDate,
-      ":END": endDate,
+      ":START": formattedStartDate,
+      ":END": formattedEndDate,
+    };
+    // IF jobEmployees[] contains :EMPLOYEE
+    const filterExpression = "contains(jobEmployees, :EMPLOYEE)";
+    const filterExpressionAttributeValues = {
       ":EMPLOYEE": employee_id,
     };
-    const filterExpression =
-      "jobDate BETWEEN :START AND :END AND contains(jobEmployees, :EMPLOYEE)";
 
     const results = await generalModule.queryFromDatabase(
       "Jobs",
       keyConditionExpression,
-      expressionAttributeValues,
+      {
+        ...expressionAttributeValues,
+        ...filterExpressionAttributeValues,
+      },
       filterExpression
     );
 
+    console.log("FROM personalScheduleFunc.js, results:", results);
+
+    // res.json("FROM personalScheduleFunc.js:", results);
+    // res.status(200).json(results);
     res.json(results);
   } catch (error) {
     res.status(500).json({
