@@ -3,7 +3,8 @@
 // can be selected for display.
 
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+// import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 
 const DateSelector = ({
   date1,
@@ -21,34 +22,48 @@ const DateSelector = ({
 
   const formattedDate = formatDate(date1, date2);
 
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={pressedPreviousDate}>
-        <Text style={styles.arrowText}>{"<"}</Text>
-      </TouchableOpacity>
+  try {
+    return (
+      <View style={styles.container}>
+        <View style={styles.containerSelect}>
+          <Pressable onPress={pressedPreviousDate}>
+            <Text style={styles.arrowText}>{"<"}</Text>
+          </Pressable>
 
-      <Text style={styles.dateText}>{formattedDate}</Text>
+          <Text style={styles.dateText}>{formattedDate}</Text>
 
-      <TouchableOpacity onPress={pressedNextDate}>
-        <Text style={styles.arrowText}>{">"}</Text>
-      </TouchableOpacity>
-    </View>
-  );
+          <Pressable onPress={pressedNextDate}>
+            <Text style={styles.arrowText}>{">"}</Text>
+          </Pressable>
+        </View>
+        <View style={styles.line} />
+      </View>
+    );
+  } catch (error) {
+    console.log("FROM DataSelector.js:", error);
+  }
 };
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
+    flex: 1,
+    backgroundColor: "transparent",
+    justifyContent: "center",
+  },
+  containerSelect: {
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     // maxWidth: "100%",
   },
   dateText: {
     color: "white",
     textAlign: "center",
     fontSize: 25,
-    paddingVertical: 20,
-    paddingHorizontal: 15,
+    // paddingVertical: 20,
+    // paddingHorizontal: 15,
     fontFamily: "Selawik-Semilight",
   },
   arrowText: {
@@ -56,6 +71,13 @@ const styles = StyleSheet.create({
     fontSize: 35,
     marginBottom: 5,
     fontFamily: "Selawik-Semilight",
+  },
+  line: {
+    height: 2,
+    backgroundColor: "#D9AC6E",
+    width: "100%",
+    position: "absolute",
+    bottom: 0,
   },
 });
 
