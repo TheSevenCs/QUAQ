@@ -5,6 +5,7 @@ const {
 const {
   PutCommand,
   ScanCommand,
+  QueryCommand,
   DeleteCommand,
   DynamoDBDocumentClient,
 } = require("@aws-sdk/lib-dynamodb");
@@ -73,11 +74,19 @@ const queryFromDatabase = async (
       ExpressionAttributeValues: expressionAttributeValues,
     };
 
+    console.log("FROM Database.js, PARAMS: ", params);
+
     if (filterExpression != null) {
       params.FilterExpression = filterExpression;
     }
 
+    console.log("FROM Database.js, CALLING DYNAMO FUNCTION.");
     const result = await dynamoClient.send(new QueryCommand(params));
+    // return result.Items;
+    console.log(
+      "FROM Database.js, DYNAMO FUNCTION CALLED, RESULT ITEMS:",
+      result.Items
+    );
     return result.Items;
   } catch (error) {
     console.error("FROM Database.js, ERROR QUERYING DATA:", error);
