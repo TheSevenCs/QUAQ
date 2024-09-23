@@ -1,23 +1,21 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, Dimensions, Pressable } from "react-native";
 
 const EditButtons = () => {
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>+</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>-</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  try {
+    return (
+      <View style={styles.container}>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>+</Text>
+        </Pressable>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>-</Text>
+        </Pressable>
+      </View>
+    );
+  } catch (error) {
+    console.log("FROM EditButtons.js:", error);
+  }
 };
 
 const { width } = Dimensions.get("window");
@@ -26,13 +24,15 @@ const goldColour = "#D9AC6E";
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "8%",
-    position: "absolute",
+    // height: "8%",
+    // position: "absolute",
     bottom: 0,
 
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
+
+    flex: 1,
 
     // alignSelf: "center", // ???
     // backgroundColor: "red", // TESTING
