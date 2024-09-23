@@ -28,13 +28,17 @@ const DateHeader = ({ date }) => {
   const dayOfWeek = getDayOfWeek(date); // Monday, Tuesday, ...
   const displayDate = date.slice(5, 10); // MM/DD
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.line} />
-      <Text style={styles.dateText}>{`${dayOfWeek} - ${displayDate}`}</Text>
-      <View style={styles.line} />
-    </View>
-  );
+  try {
+    return (
+      <View style={styles.container}>
+        <View style={styles.line} />
+        <Text style={styles.dateText}>{`${dayOfWeek} - ${displayDate}`}</Text>
+        <View style={styles.line} />
+      </View>
+    );
+  } catch (error) {
+    console.log("FORM DateHeader.js:", error);
+  }
 };
 
 const { width } = Dimensions.get("window");
@@ -46,6 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between", // horizontal
     width: "100%",
     marginTop: 15, // only top margin on all elements
+    // flex: 1,
   },
   dateText: {
     color: "white",
@@ -58,6 +63,8 @@ const styles = StyleSheet.create({
   line: {
     flex: 1, // Make the lines fill the available space
     height: 1,
+    minHeight: 1,
+    maxHeight: 1,
     backgroundColor: "#D9AC6E",
   },
 });
