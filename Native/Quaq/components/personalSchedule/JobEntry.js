@@ -2,23 +2,27 @@ import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 
 const JobEntry = ({ jobName, startTime }) => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.textTitle} numberOfLines={1}>
-        {jobName}
-      </Text>
+  try {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.textTitle} numberOfLines={1}>
+          {jobName}
+        </Text>
 
-      <View style={styles.containerStart}>
-        <Text style={styles.textStart} numberOfLines={1}>
-          Start Time
-        </Text>
-        <View style={styles.line}></View>
-        <Text style={styles.textTime} numberOfLines={1}>
-          {startTime}
-        </Text>
+        <View style={styles.containerStart}>
+          <Text style={styles.textStart} numberOfLines={1}>
+            Start Time
+          </Text>
+          <View style={styles.line}></View>
+          <Text style={styles.textTime} numberOfLines={1}>
+            {startTime}
+          </Text>
+        </View>
       </View>
-    </View>
-  );
+    );
+  } catch (error) {
+    console.log("FROM JobEntry, ERROR:", error);
+  }
 };
 
 const { width } = Dimensions.get("window");
@@ -27,7 +31,7 @@ const goldColour = "#D9AC6E";
 const styles = StyleSheet.create({
   container: {
     width: "90%",
-    height: "10%",
+    // height: "10%",
     backgroundColor: "black",
     borderColor: goldColour,
     borderWidth: 2,
@@ -36,6 +40,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center", // vertical
     justifyContent: "space-between", // horizontal space
+
+    paddingTop: 5,
+    paddingBottom: 5,
 
     marginTop: 15, // only margin top on all components
   },
@@ -50,19 +57,22 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     color: "white",
-    fontSize: 27.5,
+    // fontSize: 27.5,
+    fontSize: "150%",
     fontFamily: "Selawik-Semilight",
 
     // marginLeft: 12.5,
     marginLeft: "4%",
     maxWidth: "60%",
 
-    maxHeight: "50%",
+    maxHeight: "100%",
   },
   textStart: {
     color: "white",
     fontSize: 15,
     fontFamily: "Selawik-Semilight",
+    height: "100%",
+    maxHeight: "100%",
   },
   textTime: {
     color: "white",
