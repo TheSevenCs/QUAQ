@@ -6,7 +6,7 @@
 
 ## Overview
 
-Construction workers often face the challenge of managing their daily tasks with subpar tools or cumbersome alternatives. The **QUAQ** was designed to bridge this gap by offering a simple, intuitive, and efficient solution tailored to the unique needs of construction professionals.
+Construction workers often face the challenge of managing their daily tasks with subpar tools or cumbersome alternatives. **QUAQ** bridges this gap by offering a simple, intuitive, and efficient solution tailored to the unique needs of construction professionals.
 
 This web app serves as a one-stop platform for organizing schedules, tracking progress, managing resources, and improving communication, all within a user-friendly interface.
 
@@ -34,13 +34,13 @@ This web app serves as a one-stop platform for organizing schedules, tracking pr
 
 ## Why QUAQ?
 
-The alternatives on the market often fail to meet the specific demands of construction workers, such as:
-- Being too complex or poorly designed.
-- Lacking features essential for on-site work.
-- Having limited accessibility on mobile devices.
-- Poor effeciency leading to slow response times and loss of frames
+Alternatives often fail to meet the specific demands of construction workers due to:
+- Complexity or poor design.
+- Lack of essential on-site work features.
+- Limited mobile accessibility.
+- Inefficient performance, leading to delays and frustrations.
 
-**Construction Helper** was created with the goal of being:
+**QUAQ** was created with the goal of being:
 - **Accessible:** Optimized for mobile use on job sites.
 - **Intuitive:** Designed with simplicity in mind.
 - **Tailored:** Focused solely on the needs of construction workers.
@@ -65,3 +65,4 @@ The alternatives on the market often fail to meet the specific demands of constr
 ---
 
 Thank you for choosing **QUAQ** to simplify your workday and boost productivity on-site!
+
